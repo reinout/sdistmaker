@@ -1,11 +1,9 @@
 from setuptools import setup
-import os.path
 
 version = '1.2dev'
 
 long_description = '\n\n'.join([
     open('README.txt').read(),
-    open(os.path.join('sdistmaker', 'USAGE.txt')).read(),
     open('TODO.txt').read(),
     open('CHANGES.txt').read(),
     ])
