@@ -1,5 +1,6 @@
 import commands
 import logging
+import optparse
 import os
 import shutil
 import sys
@@ -31,48 +32,68 @@ def make_sdist(tag=None, destination=None, python=None):
     setup = python + ' setup.py '
 
     cmd = 'svn co %s %s' % (tag, tempdir)
-    print "Doing checkout of", tag
+    logger.debug("Doing checkout of %s", tag)
     output(cmd)
     os.chdir(tempdir)
 
-    print "Detecting name and version"
+    logger.debug("Detecting name and version..")
     cmd = setup + '--name'
     name = output(cmd).strip()
-    print "Name:", name
+    logger.debug("Name: %s", name)
     cmd = setup + '--version'
     version = output(cmd).strip()
-    print "Version:", version
+    logger.debug("Version: %s", version)
 
-    print "Making sdist tarball"
+    logger.debug("Making sdist tarball...")
     cmd = setup + 'sdist'
     logger.debug(output(cmd))
 
     targetdir = os.path.join(destination, name)
     if not name in os.listdir(destination):
-        print "Creating directory", targetdir
+        logger.info("Creating directory %s", targetdir)
         os.mkdir(targetdir)
 
     tarball = name + '-' + version + '.tar.gz'
-    print "Copying tarball", tarball
+    target_filename = os.path.join(targetdir, tarball)
+    logger.debug("Copying tarball to %s", target_filename)
     shutil.copy(os.path.join('dist', tarball),
-                os.path.join(targetdir, tarball))
+                target_filename)
     os.chdir(original_dir)
     shutil.rmtree(tempdir)
+    return target_filename
 
 
 def main(tag=None, destination=None):
-    logging.basicConfig(level=logging.DEBUG,
+    """bin/make_sdist: create an sdist for a single tag"""
+    usage = "Usage: %prog TAG DESTINATION"
+    parser = optparse.OptionParser(usage=usage)
+    parser.add_option("-v", "--verbose",
+                      action="store_true", dest="verbose", default=False,
+                      help="Show debug output")
+    parser.add_option("-q", "--quiet",
+                      action="store_true", dest="quiet", default=False,
+                      help="Show minimal output")
+    (options, args) = parser.parse_args()
+
+    if options.verbose:
+        log_level = logging.DEBUG
+    elif options.quiet:
+        log_level = logging.WARN
+    else:
+        log_level = logging.INFO
+    logging.basicConfig(level=log_level,
                         format="%(levelname)s: %(message)s")
-    usage = 'make_sdist [tag [destination]]'
-    args = sys.argv[1:]
+
     if tag is None:
         if len(args) == 0:
-            print usage
+            logger.warn("Tag not specified")
+            parser.print_help()
             sys.exit(1)
         tag = args.pop(0)
     if destination is None:
         if len(args) == 0:
-            print usage
+            logger.warn("Destination not specified")
+            parser.print_help()
             sys.exit(1)
         destination = args.pop()
 
@@ -82,4 +103,5 @@ def main(tag=None, destination=None):
     if not os.path.exists(python):
         python = None
 
-    make_sdist(tag, destination, python)
+    filename = make_sdist(tag, destination, python)
+    logger.info("Created %s", filename)

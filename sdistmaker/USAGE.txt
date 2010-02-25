@@ -57,18 +57,10 @@ a subdirectory named after the project.
     ...                   '',
     ...                   ]
     >>> maker.main(tag=tag, destination=pypidir)
-    Doing checkout of http://example.org/repo/project/tags/0.1
     Command: svn co http://example.org/repo/project/tags/0.1 ...
-    Detecting name and version
     Command: python setup.py --name
-    Name: project
     Command: python setup.py --version
-    Version: 0.1
-    Making sdist tarball
     Command: python setup.py sdist
-    <BLANKLINE>
-    Creating directory PYPI/project
-    Copying tarball project-0.1.tar.gz
     Mock copy dist/project-0.1.tar.gz -> PYPI/project/project-0.1.tar.gz
 
 A new directory for the project is created:
@@ -91,17 +83,10 @@ A new release is placed alongside just fine:
     ...                   '',
     ...                   ]
     >>> maker.main(tag=tag, destination=pypidir)
-    Doing checkout of http://example.org/repo/project/tags/0.2
     Command: svn co http://example.org/repo/project/tags/0.2 ...
-    Detecting name and version
     Command: python setup.py --name
-    Name: project
     Command: python setup.py --version
-    Version: 0.2
-    Making sdist tarball
     Command: python setup.py sdist
-    <BLANKLINE>
-    Copying tarball project-0.2.tar.gz
     Mock copy dist/project-0.2.tar.gz -> PYPI/project/project-0.2.tar.gz
     >>> os.listdir(pypidir)
     ['project']
@@ -117,18 +102,10 @@ And a second project:
     ...                   '',
     ...                   ]
     >>> maker.main(tag=tag, destination=pypidir)
-    Doing checkout of http://example.org/repo/another/tags/0.2
     Command: svn co http://example.org/repo/another/tags/0.2 ...
-    Detecting name and version
     Command: python setup.py --name
-    Name: another
     Command: python setup.py --version
-    Version: 0.2
-    Making sdist tarball
     Command: python setup.py sdist
-    <BLANKLINE>
-    Creating directory PYPI/another
-    Copying tarball another-0.2.tar.gz
     Mock copy dist/another-0.2.tar.gz -> PYPI/another/another-0.2.tar.gz
     >>> sorted(os.listdir(pypidir))
     ['another', 'project']
