@@ -32,7 +32,7 @@ Configuration
 Configuration is by means of a python file.  Easiest way to get started is by
 printing sdistmaker's own base defaults.py by doing::
 
-  $> sdists_from_tags --print-example_defaults
+  $> sdists_from_tags --print-example-defaults
 
 Save the output as a python file (suggestion: defaults.py).  You can then
 adapt it to your liking and use it with ``sdists_from_tags
