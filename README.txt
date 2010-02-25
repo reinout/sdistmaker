@@ -94,8 +94,12 @@ Here's an example apache config snippet::
   RewriteCond /path/on/server/var/private/$1 !-d
   RewriteRule ^/([^/]+)/([^/]+)$ http://pypi.python.org/pypi/$1/$2 [P,L]
 
-You can use such a custom index in two ways.  Easy_install has a ``-i`` option
-for passing along an index::
+
+Using the apache-served index
+-----------------------------
+
+You can use such a custom apache-served index in two ways.  Easy_install has a
+``-i`` option for passing along an index::
 
   $> easy_install -i http://packages.my.server/ zest.releaser
 
