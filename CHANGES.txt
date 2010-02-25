@@ -7,6 +7,8 @@ Changelog of sdistmaker
 
 - **Renamed from tha.sdistmaker to sdistmaker**.
 
+- Huge documentation improvement.
+
 - Using optparse for the scripts so that they have a better usage message.
   This greatly improves documentation.
 
