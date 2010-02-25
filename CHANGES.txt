@@ -1,11 +1,11 @@
-Changelog of tha.sdistmaker
-===========================
+Changelog of sdistmaker
+=======================
 
 
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- **Renamed from tha.sdistmaker to sdistmaker**.
 
 
 1.1 (2009-12-22)

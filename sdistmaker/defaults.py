@@ -10,7 +10,7 @@
 #
 # [sdists]
 # recipe = zc.recipe.egg
-# eggs = tha.sdistmaker
+# eggs = sdistmaker
 # scripts = sdists_from_tags
 # arguments =
 #     defaults_file='${buildout:directory}/defaults.py',

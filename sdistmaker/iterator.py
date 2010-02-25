@@ -12,14 +12,14 @@ from tha.tagfinder import extracter
 from tha.tagfinder import finder
 from tha.tagfinder import lister
 
-from tha.sdistmaker import maker
+from sdistmaker import maker
 
 # We import our own defaults, these can be overridden.
-from tha.sdistmaker.defaults import BASE
-from tha.sdistmaker.defaults import BASE_ON_SERVER
-from tha.sdistmaker.defaults import BLACKLIST
-from tha.sdistmaker.defaults import STOP_INDICATORS
-from tha.sdistmaker.defaults import OUTDIR
+from sdistmaker.defaults import BASE
+from sdistmaker.defaults import BASE_ON_SERVER
+from sdistmaker.defaults import BLACKLIST
+from sdistmaker.defaults import STOP_INDICATORS
+from sdistmaker.defaults import OUTDIR
 
 DEFAULTS = ['BASE',
             'BASE_ON_SERVER',

@@ -25,5 +25,5 @@ def teardown(test):
 
 
 test_suite = z3c.testsetup.register_all_tests(
-    'tha.sdistmaker',
+    'sdistmaker',
     checker=checker)

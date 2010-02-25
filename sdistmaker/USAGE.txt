@@ -1,11 +1,11 @@
-Usage of tha.sdistmaker
+Usage of sdistmaker
 =======================
 
 .. :doctest:
-.. :setup: tha.sdistmaker.tests.test_setup.setup
-.. :teardown: tha.sdistmaker.tests.test_setup.teardown
+.. :setup: sdistmaker.tests.test_setup.setup
+.. :teardown: sdistmaker.tests.test_setup.teardown
 
-tha.sdistmaker has two main uses:
+sdistmaker has two main uses:
 
 - Make and store an sdist tarball of a single tag.
 
@@ -44,7 +44,7 @@ Monkeypatching to prevent real action from taking place:
 Making sdist tarball of a single tag
 ------------------------------------
 
-    >>> from tha.sdistmaker import maker
+    >>> from sdistmaker import maker
     >>> tag = 'http://example.org/repo/project/tags/0.1'
 
 The script makes an svn checkout of the tag and uses setuptools to grab the

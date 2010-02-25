@@ -36,7 +36,7 @@ setup(name='sdistmaker',
       tests_require=tests_require,
       entry_points={
           'console_scripts': [
-              'make_sdist = tha.sdistmaker.maker:main',
-              'sdists_from_tags = tha.sdistmaker.iterator:main',
+              'make_sdist = sdistmaker.maker:main',
+              'sdists_from_tags = sdistmaker.iterator:main',
           ]},
       )
