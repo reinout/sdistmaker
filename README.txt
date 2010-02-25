@@ -22,15 +22,22 @@ A simple ``easy_install sdistmaker`` is enough.  This gives you two scripts:
 For starters, just run ``sdists_from_tags``.  It will create a ``var/private``
 directory and fill it with (as an example!) all zest.releaser releases.
 
-**Configuration** is by means of a python file.  Easiest way to get started is
-by printing sdistmaker's own base defaults.py by doing ``sdists_from_tags
---print-example_defaults``.  Save the output as a python file (suggestion:
-defaults.py).  You can then adapt it to your liking and use it with
-``sdists_from_tags --defaults-file=defaults.py``.  The defaults file is
-documented in-line, so it should be easy to adapt.
-
 Both scripts have a ``--help`` option that show all available options and a
 usage instruction.
+
+
+Configuration
+-------------
+
+Configuration is by means of a python file.  Easiest way to get started is by
+printing sdistmaker's own base defaults.py by doing::
+
+  $> sdists_from_tags --print-example_defaults
+
+Save the output as a python file (suggestion: defaults.py).  You can then
+adapt it to your liking and use it with ``sdists_from_tags
+--defaults-file=defaults.py``.  The defaults file is documented in-line, so it
+should be easy to adapt.
 
 
 Usage in a buildout
