@@ -2,7 +2,7 @@ Changelog of sdistmaker
 =======================
 
 
-1.2 (unreleased)
+1.2 (2010-02-25)
 ----------------
 
 - **Renamed from tha.sdistmaker to sdistmaker**.
