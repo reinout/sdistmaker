@@ -7,6 +7,14 @@ Changelog of sdistmaker
 
 - **Renamed from tha.sdistmaker to sdistmaker**.
 
+- Using optparse for the scripts so that they have a better usage message.
+  This greatly improves documentation.
+
+- Not showing the doctest from ``USAGE.txt`` anymore in the long description.
+  That just wasn't readable documentation.
+
+- The output directory is created when missing.
+
 
 1.1 (2009-12-22)
 ----------------

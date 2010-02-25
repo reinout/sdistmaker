@@ -5,3 +5,4 @@ develop-eggs
 .installed.cfg
 sdistmaker.egg-info
 *.pyc
+var

@@ -1,10 +1,4 @@
 TODO
 ====
 
-- Create var/private if missing.
-
-- Don't include USAGE.txt in long description.
-
 - Add documentation on defaults.py.
-
-- Add --help to sdists_from_tags.
