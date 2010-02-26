@@ -5,7 +5,7 @@ Changelog of sdistmaker
 1.2.2 (2010-02-26)
 ------------------
 
-- Nothing changed yet.
+- Fixed broken release with missing TODO.txt.
 
 
 1.2.1 (2010-02-25)
