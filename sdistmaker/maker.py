@@ -53,7 +53,8 @@ def make_sdist(tag=None, destination=None, python=None):
         logger.info("Creating directory %s", targetdir)
         os.mkdir(targetdir)
 
-    tarball = name + '-' + version + '.tar.gz'
+    dist_dir = os.path.join(tempdir, 'dist')
+    tarball = os.listdir(dist_dir)[0]
     target_filename = os.path.join(targetdir, tarball)
     logger.debug("Copying tarball to %s", target_filename)
     shutil.copy(os.path.join('dist', tarball),
