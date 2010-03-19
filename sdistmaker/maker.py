@@ -23,6 +23,33 @@ def output(cmd):
     return out
 
 
+def find_tarball(dist_dir, name, version):
+    """Return correct tarball from dist/ dir (if found)
+
+    We expect "name + '-' + version + '.tar.gz'", but we *can* get a
+    -dev.r1234.tar.gz as that can be configured in a setup.cfg.  Not pretty,
+    but we don't want to force anyone to modify old tags.  Let's look at .zip
+    also right away instead of only at .tar.gz.  .zip is sometimes better for
+    python2.4 due to a tarfile bug.
+
+    """
+    dir_contents = os.listdir(dist_dir)
+    candidates = [tarball for tarball in dir_contents
+                  if (tarball.endswith('.gz') or tarball.endswith('.zip'))
+                  and tarball.startswith(name + '-' + version)]
+    if not candidates:
+        logger.error("No recognizable distribution found for %s, version %s",
+                     name, version)
+        logger.error("dist/ directory contents: %r", dir_contents)
+        return
+    if len(candidates) > 1:
+        # Should not happen.
+        logger.warn("More than one candidate distribution found: %r",
+                    candidates)
+    tarball = candidates[0]
+    return tarball
+
+
 def make_sdist(tag=None, destination=None, python=None):
     destination = os.path.abspath(destination)
     tempdir = tempfile.mkdtemp()
@@ -54,7 +81,9 @@ def make_sdist(tag=None, destination=None, python=None):
         os.mkdir(targetdir)
 
     dist_dir = os.path.join(tempdir, 'dist')
-    tarball = os.listdir(dist_dir)[0]
+    tarball = find_tarball(dist_dir, name, version)
+    if not tarball:
+        return
     target_filename = os.path.join(targetdir, tarball)
     logger.debug("Copying tarball to %s", target_filename)
     shutil.copy(os.path.join('dist', tarball),
