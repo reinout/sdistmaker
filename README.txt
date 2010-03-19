@@ -125,3 +125,5 @@ Credits
 Written by `Reinout van Rees <http://reinout.vanrees.org>`_. Started while at
 `The Health Agency <http://www.thehealthagency.com>`_, improved at `Nelen &
 Schuurmans <http://www.nelen-schuurmans.nl>`_.
+
+Dev-and-revision-marker fix by Wouter Vanden Hove.
