@@ -32,3 +32,5 @@ STOP_INDICATORS = [
 
 # Name of the output "pypi" directory.
 OUTDIR = 'var/private'
+# If true, don't upload to the OUTDIR, but upload to pypi.
+UPLOAD_TO_PYPY = False
