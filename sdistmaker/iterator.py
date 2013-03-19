@@ -7,6 +7,7 @@ import imp
 import logging
 import optparse
 import os
+import urllib
 import sys
 
 from tha.tagfinder import extracter
@@ -22,12 +23,15 @@ from sdistmaker.defaults import BASE_ON_SERVER
 from sdistmaker.defaults import BLACKLIST
 from sdistmaker.defaults import STOP_INDICATORS
 from sdistmaker.defaults import OUTDIR
+from sdistmaker.defaults import UPLOAD_TO_PYPI
 
 DEFAULTS = ['BASE',
             'BASE_ON_SERVER',
             'BLACKLIST',
             'STOP_INDICATORS',
-            'OUTDIR']
+            'OUTDIR',
+            'UPLOAD_TO_PYPI',
+            ]
 
 logger = logging.getLogger('exporter')
 
@@ -110,6 +114,19 @@ def main(defaults_file=None, python=None):
     for project in info.projects:
         name = project.name
         for tag in project.tags:
+            if UPLOAD_TO_PYPI:
+                # Upload to Pypi.
+                package_url = 'https://pypi.python.org/simple/%s/' % name
+                try:
+                    contents = urllib.urlopen(package_url)
+                    expected = "%s-%s" % (project.name, tag)
+                    if expected  in contents:
+                        continue
+                    # We need to upload it.
+                except IOError:
+                    logger.warn("Pypi page for %s not found", package_url)
+
+            # Local upload.
             tgz = name + '-' + tag + '.tar.gz'
             tgz = os.path.join(destination, name, tgz)
             if os.path.exists(tgz):
